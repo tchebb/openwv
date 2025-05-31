@@ -1,4 +1,4 @@
-use cmac::Mac;
+use cmac::{Mac, digest::KeyInit};
 use prost::Message;
 use thiserror::Error;
 

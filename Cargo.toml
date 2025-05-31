@@ -20,16 +20,14 @@ rand = { version = "0.9", default-features = false, features = ["std", "os_rng"]
 uuid = "1"
 
 ### RustCrypto crates
-# FIXME: Get rid of this once RustCrypto migrates to rand 0.9
-rand8 = { package = "rand", version = "0.8" }
-rsa = "0.9"
-sha1 = { version = "0.10", features = ["oid"] }
-sha2 = "0.10"
-cmac = "0.7"
-hmac = "0.12"
-aes = "0.8"
-cbc = { version = "0.1", features = ["std"] }
-ctr = { version = "0.9", features = ["std"] }
+rsa = "0.10.0-rc"
+sha1 = "0.11.0-rc"
+sha2 = "0.11.0-rc"
+cmac = "0.8.0-rc"
+hmac = "0.13.0-rc"
+aes = "0.9.0-rc"
+cbc = { version = "0.2.0-rc", features = ["alloc"] }
+ctr = "0.10.0-rc"
 
 [build-dependencies]
 autocxx-build = { git = "https://github.com/tchebb/autocxx.git", branch = "openwv-fixes" }

@@ -1,6 +1,6 @@
-use aes::cipher::{BlockDecryptMut, KeyIvInit};
+use aes::cipher::{BlockModeDecrypt, KeyIvInit};
 use byteorder::{BE, ByteOrder};
-use cmac::Mac;
+use cmac::{Mac, digest::KeyInit};
 use log::info;
 use prost::Message;
 use rand::{Rng, TryRngCore};
@@ -35,7 +35,8 @@ pub fn request_license(
     server_certificate: Option<&ServerCertificate>,
     device: &WidevineDevice,
 ) -> (video_widevine::SignedMessage, Vec<u8>) {
-    let key_control_nonce: u32 = rand::rngs::OsRng.unwrap_err().random();
+    let mut rng = rand::rngs::OsRng.unwrap_err();
+    let key_control_nonce: u32 = rng.random();
 
     let mut req = video_widevine::LicenseRequest {
         content_id: Some(content_id),
@@ -54,9 +55,7 @@ pub fn request_license(
     let req_bytes = req.encode_to_vec();
 
     let signing_key = rsa::pss::SigningKey::<sha1::Sha1>::new(device.private_key.clone());
-    let signature = signing_key
-        .sign_with_rng(&mut rand8::thread_rng(), &req_bytes)
-        .to_vec();
+    let signature = signing_key.sign_with_rng(&mut rng, &req_bytes).to_vec();
 
     let req_bytes_for_sig = req_bytes.clone();
     (
@@ -103,7 +102,7 @@ pub fn load_license_keys(
         let decryptor =
             cbc::Decryptor::<aes::Aes128>::new_from_slices(&session_keys.encryption, &iv)?;
         let new_size = decryptor
-            .decrypt_padded_mut::<aes::cipher::block_padding::Pkcs7>(data.as_mut_slice())?
+            .decrypt_padded::<aes::cipher::block_padding::Pkcs7>(&mut data)?
             .len();
         data.truncate(new_size);
 

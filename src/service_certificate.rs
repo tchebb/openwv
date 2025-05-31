@@ -1,5 +1,4 @@
-use aes::cipher::BlockEncryptMut;
-use aes::cipher::KeyIvInit;
+use aes::cipher::{BlockModeEncrypt, KeyIvInit};
 use log::info;
 use prost::Message;
 use rand::{Rng, TryRngCore};
@@ -124,14 +123,14 @@ pub fn encrypt_client_id(
         cbc::Encryptor::<aes::Aes128>::new_from_slices(&privacy_key, &privacy_iv).unwrap();
 
     let encrypted_client_id = client_id_encryptor
-        .encrypt_padded_vec_mut::<aes::cipher::block_padding::Pkcs7>(
+        .encrypt_padded_vec::<aes::cipher::block_padding::Pkcs7>(
             client_id.encode_to_vec().as_slice(),
         );
 
     let rsa_padding = rsa::Oaep::new::<sha1::Sha1>();
     let encrypted_privacy_key = cert
         .key
-        .encrypt(&mut rand8::thread_rng(), rsa_padding, &privacy_key)
+        .encrypt(&mut rng, rsa_padding, &privacy_key)
         .unwrap();
 
     video_widevine::EncryptedClientIdentification {

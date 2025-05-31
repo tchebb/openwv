@@ -1,4 +1,4 @@
-use aes::cipher::{BlockDecryptMut, KeyIvInit, StreamCipher};
+use aes::cipher::{BlockModeDecrypt, KeyIvInit, StreamCipher};
 use thiserror::Error;
 
 use crate::content_key::ContentKey;
@@ -104,7 +104,7 @@ fn decrypt_pattern(
     let mut blocks = data.chunks_exact_mut(16);
     while blocks.len() > 0 {
         for block in blocks.by_ref().take(pattern_crypt) {
-            decryptor.decrypt_block_mut(block.into());
+            decryptor.decrypt_block(block.try_into().unwrap());
         }
 
         blocks.by_ref().take(pattern_skip).for_each(drop);
