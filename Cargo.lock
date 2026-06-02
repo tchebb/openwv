@@ -66,8 +66,8 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
 name = "autocxx"
-version = "0.30.0"
-source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#1fca5acd26f533576f98da45075d5498a1731d92"
+version = "0.30.1"
+source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#cef6d9e9d2ad98daefa0eccef4a79dbfa1f175d2"
 dependencies = [
  "aquamarine",
  "autocxx-macro",
@@ -77,14 +77,13 @@ dependencies = [
 
 [[package]]
 name = "autocxx-bindgen"
-version = "0.73.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ecaaf84d9cf1a772409c0abdac7d2477a31fd890dbdf606d8f684dc60129aa94"
+version = "0.73.1"
+source = "git+https://github.com/tchebb/rust-bindgen?branch=openwv-fixes#2ed5c81765a6b3f59c775d4425ad06815dbdba5c"
 dependencies = [
  "bitflags",
  "cexpr",
  "clang-sys",
- "itertools 0.13.0",
+ "itertools 0.10.5",
  "log",
  "proc-macro2",
  "quote",
@@ -96,8 +95,8 @@ dependencies = [
 
 [[package]]
 name = "autocxx-build"
-version = "0.30.0"
-source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#1fca5acd26f533576f98da45075d5498a1731d92"
+version = "0.30.1"
+source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#cef6d9e9d2ad98daefa0eccef4a79dbfa1f175d2"
 dependencies = [
  "autocxx-engine",
  "env_logger 0.9.3",
@@ -107,8 +106,8 @@ dependencies = [
 
 [[package]]
 name = "autocxx-engine"
-version = "0.30.0"
-source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#1fca5acd26f533576f98da45075d5498a1731d92"
+version = "0.30.1"
+source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#cef6d9e9d2ad98daefa0eccef4a79dbfa1f175d2"
 dependencies = [
  "aquamarine",
  "autocxx-bindgen",
@@ -136,8 +135,8 @@ dependencies = [
 
 [[package]]
 name = "autocxx-macro"
-version = "0.30.0"
-source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#1fca5acd26f533576f98da45075d5498a1731d92"
+version = "0.30.1"
+source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#cef6d9e9d2ad98daefa0eccef4a79dbfa1f175d2"
 dependencies = [
  "autocxx-parser",
  "proc-macro-error",
@@ -148,8 +147,8 @@ dependencies = [
 
 [[package]]
 name = "autocxx-parser"
-version = "0.30.0"
-source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#1fca5acd26f533576f98da45075d5498a1731d92"
+version = "0.30.1"
+source = "git+https://github.com/tchebb/autocxx.git?branch=openwv-fixes#cef6d9e9d2ad98daefa0eccef4a79dbfa1f175d2"
 dependencies = [
  "indexmap 1.9.3",
  "itertools 0.10.5",
@@ -660,15 +659,6 @@ name = "itertools"
 version = "0.10.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b0fd2260e829bddf4cb6ea802289de2f86d6a7a690192fbe91b3f46e0f2c8473"
-dependencies = [
- "either",
-]
-
-[[package]]
-name = "itertools"
-version = "0.13.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "413ee7dfc52ee1a4949ceeb7dbc8a33f2d6c088194d9f922fb8318faf1f01186"
 dependencies = [
  "either",
 ]
