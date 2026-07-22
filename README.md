@@ -53,7 +53,7 @@ or `libwidevinecdm.dylib` on macOS.*
 1. Open `about:support` and note your "Profile Directory".
 2. Open `about:config`. Set `media.gmp-widevinecdm.autoupdate` to `false`
    (creating it if needed), and set `media.gmp-widevinecdm.version` to `openwv`
-   (or to any other name for the directory you create in step 3).
+   (or to another name for the directory you'll create in step 4).
 3. Navigate to `gmp-widevinecdm/` within your profile directory.
 4. Create a subdirectory named `openwv` and place the OpenWV library and
    `manifest-firefox.json`, renamed to `manifest.json`, inside it. Note that
